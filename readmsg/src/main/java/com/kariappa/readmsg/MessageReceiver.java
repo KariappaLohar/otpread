@@ -15,32 +15,21 @@ public class MessageReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Bundle data = intent.getExtras();
         Object[] pdus = (Object[]) data.get("pdus");
-//        for(int i=0; i<pdus.length; i++){
-//            SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
-////            String message = "Sender : " + smsMessage.getDisplayOriginatingAddress()
-////                    + "Email From: " + smsMessage.getEmailFrom()
-////                    + "Emal Body: " + smsMessage.getEmailBody()
-////                    + "Display message body: " + smsMessage.getDisplayMessageBody()
-////                    + "Time in millisecond: " + smsMessage.getTimestampMillis()
-////                    + "Message: " + smsMessage.getMessageBody();
-//            if(isNumeric(smsMessage.getMessageBody())){
-//                mListener.messageReceived(Integer.parseInt(smsMessage.getMessageBody()));
-//            }else {
-//                mListener.messageReceived(-1);
-//            }
-//
-//        }
-
-        SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) pdus[pdus.length]);
-
-        if(smsMessage!=null){
+        for(int i=0; i<pdus.length; i++){
+            SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) pdus[i]);
+//            String message = "Sender : " + smsMessage.getDisplayOriginatingAddress()
+//                    + "Email From: " + smsMessage.getEmailFrom()
+//                    + "Emal Body: " + smsMessage.getEmailBody()
+//                    + "Display message body: " + smsMessage.getDisplayMessageBody()
+//                    + "Time in millisecond: " + smsMessage.getTimestampMillis()
+//                    + "Message: " + smsMessage.getMessageBody();
             if(isNumeric(smsMessage.getMessageBody())){
                 mListener.messageReceived(Integer.parseInt(smsMessage.getMessageBody()));
             }else {
                 mListener.messageReceived(-1);
             }
-        }
 
+        }
 
     }
     public boolean isNumeric(String strNum) {
