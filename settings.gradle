@@ -1,3 +1,4 @@
+include ':mylibrary'
 include ':readmsg'
 include ':app'
 rootProject.name = "ReadMessage"
